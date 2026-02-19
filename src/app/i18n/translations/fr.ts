@@ -21,6 +21,7 @@ export const fr: Record<string, string> = {
   'toolbar.exportSingle': 'Exporter en PNG',
   'toolbar.exportMultiple': 'Exporter {count} PNG',
   'toolbar.exportAllTabs': 'Tout exporter',
+  'toolbar.duplicate': 'Dupliquer l\'écran actuel',
   'toolbar.clearAll': 'Tout effacer',
 
   // Properties panel

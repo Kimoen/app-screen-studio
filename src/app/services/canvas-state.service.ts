@@ -103,6 +103,30 @@ export class CanvasStateService {
     }
   }
 
+  duplicateTab(index: number) {
+    const tabToDuplicate = this.tabs()[index];
+    if (!tabToDuplicate) return;
+
+    // Deep copy the state (simple JSON Clone is enough for this structure)
+    const clonedTab: CanvasState = JSON.parse(JSON.stringify(tabToDuplicate));
+
+    // Generate new IDs for all elements to avoid conflicts
+    clonedTab.elements.forEach(el => {
+      el.id = generateId();
+    });
+
+    this.pushHistory();
+    this.tabs.update(tabs => {
+      const newTabs = [...tabs];
+      // Insert after the duplicated tab
+      newTabs.splice(index + 1, 0, clonedTab);
+      return newTabs;
+    });
+
+    // Switch to the new tab
+    this.activeTabIndex.set(index + 1);
+  }
+
   // --- Undo / Redo ---
 
   undo() {

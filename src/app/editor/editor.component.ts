@@ -78,6 +78,11 @@ export class EditorComponent implements AfterViewInit {
     this.canvasState.setActiveTab(index);
   }
 
+  onDuplicateActiveTab() {
+    this.canvasState.duplicateTab(this.canvasState.activeTabIdx());
+  }
+
+
   @HostListener('window:resize')
   onResize() {
     this.computeScale();
